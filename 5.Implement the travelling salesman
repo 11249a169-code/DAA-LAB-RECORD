@@ -1,0 +1,70 @@
+EXP NO:05
+DATE:10|03|26
+
+AIM:
+To implement Travelling Salesman Problem.
+
+ALGORITHM:
+Read cost matrix
+Start from first city
+Mark visited city
+Select nearest unvisited city
+Repeat until all cities visited
+Return to starting city
+Compute total cost
+
+PROGRAM:
+#include<stdio.h>
+#define INF 999
+int n,cost[10][10],visited[10]={0},min, mincost=0;
+void tsp(int city)
+{
+    int i;
+    visited[city]=1;
+    printf("%d -> ",city+1);
+    int next=-1;
+    min=INF;
+    for(i=0;i<n;i++)
+    {
+        if(cost[city][i] && !visited[i])
+        {
+            if(cost[city][i]<min)
+            {
+                min=cost[city][i];
+                next=i;
+            }
+        }
+    }
+    if(next==-1)
+    {
+        next=0;
+        printf("%d",next+1);
+        mincost+=cost[city][next];
+        return;
+    }
+    mincost+=min;
+    tsp(next);
+}
+int main()
+{
+    int i,j;
+    printf("Enter number of cities: ");
+    scanf("%d",&n);
+    printf("Enter cost matrix:\n");
+    for(i=0;i<n;i++)
+        for(j=0;j<n;j++)
+            scanf("%d",&cost[i][j]);
+    tsp(0);
+    printf("\nMinimum cost = %d",mincost);
+}
+
+
+OUTPUT:
+Path:
+1 -> 2 -> 4 -> 3 -> 1
+Minimum cost = 80
+
+
+RESULT:
+
+Thus Travelling Salesman Problem is implemented.

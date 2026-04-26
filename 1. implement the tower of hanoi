@@ -1,0 +1,48 @@
+EXP NO: 01
+DATE:
+
+AIM:
+To solve the Tower of Hanoi problem using recursion and understand the working of recursive algorithms.
+
+ALGORITHM:
+Start with three rods: Source (A), Auxiliary (B), and Destination (C).
+Let n be the number of disks.
+If n == 1, move the disk directly from Source to Destination.
+Otherwise:
+Move n-1 disks from Source to Auxiliary using Destination as helper.
+Move the nth disk from Source to Destination.
+Move the n-1 disks from Auxiliary to Destination using Source as helper.
+Repeat until all disks are moved to the Destination rod.
+
+PROGRAM:
+#include <stdio.h>
+void towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod) {
+    if (n == 1) {
+        printf("Move disk 1 from rod %c to rod %c\n", from_rod, to_rod);
+        return;
+    }
+    towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
+    printf("Move disk %d from rod %c to rod %c\n", n, from_rod, to_rod);
+    towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
+}
+int main() {
+    int n;
+    printf("Enter number of disks: ");
+    scanf("%d", &n);
+    towerOfHanoi(n, 'A', 'C', 'B');
+    return 0;
+}
+
+OUTPUT:
+Enter number of disks: 3
+
+Move disk 1 from rod A to rod C
+Move disk 2 from rod A to rod B
+Move disk 1 from rod C to rod B
+Move disk 3 from rod A to rod C
+Move disk 1 from rod B to rod A
+Move disk 2 from rod B to rod C
+Move disk 1 from rod A to rod C
+
+RESULT:
+the program was executed successfully

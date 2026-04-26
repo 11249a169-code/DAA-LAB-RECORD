@@ -1,0 +1,50 @@
+EXP NO: 03
+DATE: 10|02|26
+
+AIM:
+To implement Bin Packing using First Fit algorithm.
+
+ALGORITHM:
+Create bins
+Place each item in first bin that fits
+If no bin fits create new bin
+Print bins used
+
+PROGRAM:
+#include<stdio.h>
+int main()
+{
+    int n,c,i,j;
+    int w[20],bin[20];
+    printf("Enter number of items: ");
+    scanf("%d",&n);
+    printf("Enter bin capacity: ");
+    scanf("%d",&c);
+    printf("Enter weights:\n");
+    for(i=0;i<n;i++)
+        scanf("%d",&w[i]);
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(bin[j]>=w[i])
+            {
+                bin[j]-=w[i];
+                break;
+            }
+        }
+        if(j==i)
+            bin[j]=c-w[i];
+    }
+    printf("Bins required: %d",j);
+}
+
+OUTPUT:
+Enter number of items: 5
+Enter bin capacity: 10
+Enter weights:
+2 5 4 7 1
+Bins required: 3
+
+RESULT:
+Thus bin packing using First Fit algorithm is implemented.

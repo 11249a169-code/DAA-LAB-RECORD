@@ -1,0 +1,73 @@
+exp no:10
+DATE:26|04|26
+
+AIM:
+To sort elements using randomized quick sort.
+
+ALGORITHM:
+Read number of elements
+Choose random pivot
+Partition array
+Recursively sort left part
+Recursively sort right part
+Print sorted array
+
+PROGRAM:
+#include<stdio.h>
+#include<stdlib.h>
+void swap(int *a,int *b)
+{
+    int t=*a;
+    *a=*b;
+    *b=t;
+}
+int partition(int a[],int low,int high)
+{
+    int pivot=a[high];
+    int i=low-1,j;
+    for(j=low;j<high;j++)
+    {
+        if(a[j]<=pivot)
+        {
+            i++;
+            swap(&a[i],&a[j]);
+        }
+    }
+    swap(&a[i+1],&a[high]);
+    return i+1;
+}
+void quicksort(int a[],int low,int high)
+{
+    if(low<high)
+    {
+        int r=low+rand()%(high-low+1);
+        swap(&a[r],&a[high]);
+        int pi=partition(a,low,high);
+        quicksort(a,low,pi-1);
+        quicksort(a,pi+1,high);
+    }
+}
+int main()
+{
+    int n,i,a[20];
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
+    printf("Enter elements:\n");
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    quicksort(a,0,n-1);
+    printf("Sorted array:\n");
+    for(i=0;i<n;i++)
+        printf("%d ",a[i]);
+}
+
+
+OUTPUT:
+Enter number of elements: 5
+Enter elements:
+5 3 8 4 2
+Sorted array:
+2 3 4 5 8
+
+RESULT:
+Thus elements are sorted using randomized quick sort successfully.
